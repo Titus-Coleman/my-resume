@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "public_get" {
     condition {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
-      values   = ["arn:aws:cloudfront::${var.account_id}:distribution/E22NG85NU0VEZO"]
+      values   = ["arn:aws:cloudfront::${var.account_id}:distribution/${aws_cloudfront_distribution.s3_distribution.id}"]
     }
   }
 }
