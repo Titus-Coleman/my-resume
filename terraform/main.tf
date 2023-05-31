@@ -1,30 +1,46 @@
 provider "aws" {
-  region  = "us-east-1"
+  region  = var.aws_region
   profile = "default"
 }
 
 
 resource "aws_s3_bucket" "resume" {
   bucket = "resume.tituscoleman.dev"
+  #   force_destroy = true
 
   tags = {
     Name = "Resume Page"
   }
 }
-# resource "aws_s3_bucket_acl" "resume_acl" {
-#   bucket = aws_s3_bucket.resume.id
-#   acl    = "private"
-# }
-
-
-# Upload an object
-resource "aws_s3_object" "resume_upload" {
-  key                    = "TitusColemanResume.html"
-  bucket                 = aws_s3_bucket.resume.id
-  source                 = "../TitusColemanResume.html"
-  server_side_encryption = "aws:kms"
+resource "aws_s3_bucket_policy" "allow_get_access" {
+  bucket = aws_s3_bucket.resume.id
+  policy = data.aws_iam_policy_document.public_get.json
 }
 
+data "aws_iam_policy_document" "public_get" {
+  statement {
+    sid = "AllowCFServicePrincipal"
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    actions = [
+      "s3:GetObject"
+    ]
+
+    resources = [
+      "${aws_s3_bucket.resume.arn}/*"
+    ]
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = ["arn:aws:cloudfront::${var.account_id}:distribution/E22NG85NU0VEZO"]
+    }
+  }
+}
 
 resource "aws_s3_bucket_website_configuration" "resume_site" {
   bucket = aws_s3_bucket.resume.id
@@ -39,116 +55,62 @@ resource "aws_s3_bucket_website_configuration" "resume_site" {
 }
 
 
-
 locals {
   s3_origin_id = "resume-s3-origin"
 }
 
 resource "aws_cloudfront_origin_access_control" "s3_resume" {
-  name                              = "Resume_on_S3"
-  description                       = "s3 resume Policy"
+  name                              = "${aws_s3_bucket.resume.id}.s3.${var.aws_region}.amazonaws.com"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
-  origin {
-    domain_name              = aws_s3_bucket.resume.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.s3_resume.id
-    origin_id                = local.s3_origin_id
-
-  }
-  aliases             = ["resume.tituscoleman.dev"]
-  enabled             = true
-  is_ipv6_enabled     = true
-  comment             = "Resume Source Bucket"
+  aliases = [
+    "resume.tituscoleman.dev",
+  ]
   default_root_object = "TitusColemanResume.html"
-
-  #   logging_config {
-  #     include_cookies = false
-  #     bucket          = "mylogs.s3.amazonaws.com"
-  #     prefix          = "resume_bucket"
-  #   }
+  price_class         = "PriceClass_100"
+  enabled             = true
 
   default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.s3_origin_id
-
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
-
-    viewer_protocol_policy = "allow-all"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
-  }
-
-  # Cache behavior with precedence 0
-  ordered_cache_behavior {
-    path_pattern     = "/content/immutable/*"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = local.s3_origin_id
-
-    forwarded_values {
-      query_string = false
-      headers      = ["Origin"]
-
-      cookies {
-        forward = "none"
-      }
-    }
-
-    min_ttl                = 0
-    default_ttl            = 86400
-    max_ttl                = 31536000
+    allowed_methods = [
+      "GET",
+      "HEAD",
+    ]
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    cached_methods = [
+      "GET",
+      "HEAD",
+    ]
     compress               = true
+    default_ttl            = 0
+    max_ttl                = 0
+    min_ttl                = 0
+    smooth_streaming       = false
+    target_origin_id       = "resume.tituscoleman.dev.s3-website-${var.aws_region}.amazonaws.com"
     viewer_protocol_policy = "redirect-to-https"
   }
-
-  # Cache behavior with precedence 1
-  ordered_cache_behavior {
-    path_pattern     = "/content/*"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.s3_origin_id
-
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
-
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
-    compress               = true
-    viewer_protocol_policy = "redirect-to-https"
+  origin {
+    connection_attempts      = 3
+    connection_timeout       = 10
+    domain_name              = "${aws_s3_bucket.resume.id}.s3.${var.aws_region}.amazonaws.com"
+    origin_access_control_id = aws_cloudfront_origin_access_control.s3_resume.id
+    origin_id                = "${aws_s3_bucket.resume.id}.s3-website-${var.aws_region}.amazonaws.com"
   }
-
-  price_class = "PriceClass_200"
 
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE"]
+      locations        = []
+      restriction_type = "none"
     }
-  }
 
-  tags = {
-    Environment = "production"
   }
-
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn            = "arn:aws:acm:${var.aws_region}:${var.account_id}:certificate/${var.cert_id}"
+    cloudfront_default_certificate = false
+    minimum_protocol_version       = "TLSv1.2_2021"
+    ssl_support_method             = "sni-only"
   }
 }
