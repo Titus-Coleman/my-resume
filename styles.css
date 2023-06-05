@@ -9,6 +9,7 @@
 */
 * {
   margin: 0;
+  
 }
 /*
   3. Allow percentage-based heights in the application
@@ -43,8 +44,9 @@ input, button, textarea, select {
 /*
   8. Avoid text overflows
 */
-p, h1, h2, h3, h4, h5, h6 {
+p, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+  font-size: small;
 }
 /*
   9. Create a root stacking context
@@ -53,22 +55,34 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+hr {
+    color: #89BD9E;
+}
+
 .my_info {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr;
+   
 }
+.name {
+    color: #721B92;
+    text-shadow: 0.3px 0.3px 0.5px black;
+}
+
 .intro {
     text-align: center;
     margin-top: 1rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
 }
 .socials {
-    display: flex;
-    flex-direction: column;
-    justify-self: end;
-    align-self: center;
-    
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    font-size: smaller;
+}
+.socials > svg {
+    width: 25px;
+    height: auto;
 }
 .social_link{
     display: inline-flex;
@@ -79,21 +93,23 @@ article {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+/*-----------------SKILLS--------------------*/
 .skill_group {
-    margin: 1rem;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
 }
 
 .skill_subgroup {
     display: flex;
     gap: 0.5rem;
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
 }
+/*-----------------CERTIFICATIONS--------------------*/
 .cert_group {
     display: inline-flex;
     gap: 2rem;
     width: 100%;
-   margin-top: 1rem;
-   margin-bottom: 1rem;
+    padding: 0.5rem;
 }
 
 .cert {
@@ -103,4 +119,48 @@ article {
 
 .cert_info {
     align-self: center;
+}
+/*-----------------EXPERIENCE--------------------*/
+.job_details {
+    padding: 0.5rem;
+}
+
+.job_info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.job_info > p {
+    justify-self: end;
+}
+.company {
+    /* color: #DB7F67; */
+    /* color: #C2AFF0; */
+    color: #DE9151;
+    font-size: x-small;
+}
+
+/*-----------------EDUCATION--------------------*/
+.degree {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0.5rem;
+    
+}
+
+.degree > h4 { 
+    font-weight: normal;
+}
+
+.degree > p {
+    justify-self: end;
+}
+
+/*-----------------REFERENCES--------------------*/
+.my_references {
+    padding: 0.5rem
+}
+.reference {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
