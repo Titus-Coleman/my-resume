@@ -128,7 +128,8 @@ article {
 
 .job_info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
 }
 
 .job_info > p {
