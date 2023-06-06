@@ -4,7 +4,7 @@
 }
 
 * {
-  margin: 0;
+  margin: 0.5rem;
   
 }
 
@@ -43,7 +43,7 @@ hr {
 
 .my_info {
     display: grid;
-    grid-template-columns: 0.5fr 1fr;
+    grid-template-columns: repeat(2, auto)
    
 }
 .name {
@@ -52,6 +52,7 @@ hr {
 }
 
 .intro {
+    display: flex;
     text-align: center;
     margin-top: 1rem;
 }
@@ -63,12 +64,13 @@ hr {
     font-size: smaller;
 }
 .socials > svg {
-    width: 25px;
-    height: auto;
+    /* width: 25px;
+    height: auto; */
 }
 .social_link{
-    display: inline-flex;
-    gap: 0.5rem
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+
 }
 
 article {
@@ -143,4 +145,36 @@ article {
 .reference {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (max-width: 650px) {
+    .my_info { 
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin: auto;
+    }
+
+    .personals {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin: auto;
+    }
+
+    .intro {
+        display: flex;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .socials {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(2, auto);
+    }
+
+    .cert_group {
+        flex-direction: column;
+    }
 }
