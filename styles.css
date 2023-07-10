@@ -63,10 +63,7 @@ hr {
     justify-items: center;
     font-size: smaller;
 }
-.socials > svg {
-    /* width: 25px;
-    height: auto; */
-}
+
 .social_link{
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -120,6 +117,10 @@ article {
 }
 .company {
     color: #DE9151;
+}
+
+.job_title {
+    font-size: medium;
 }
 
 /*-----------------EDUCATION--------------------*/
