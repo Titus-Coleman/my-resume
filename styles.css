@@ -76,8 +76,8 @@ article {
 }
 /*-----------------SKILLS--------------------*/
 .skill_group {
-    padding-left: 0.5rem;
-    padding-top: 0.5rem;
+    /* padding-left: 0.5rem;
+    padding-top: 0.5rem; */
 }
 
 .skill_subgroup {
@@ -86,24 +86,32 @@ article {
 }
 /*-----------------CERTIFICATIONS--------------------*/
 .cert_group {
-    display: inline-flex;
-    gap: 2rem;
-    width: 100%;
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    /* gap: 2rem; */
+    /* width: 100%;
+    padding: 0.5rem; */
 }
 
 .cert {
-    display: flex;
-    grid-template-columns: 1fr 1fr;
+    display: inline-flex;
+    margin: 0rem 0rem 0rem 0.5rem;
 }
 
 .cert_info {
-    align-self: center;
+    display: inline-flex;
+    align-items: center; 
+    margin: 0rem;
+}
+
+.cert_info > a {
+    font-size: small;
 }
 /*-----------------EXPERIENCE--------------------*/
 .job_details {
     padding: 0.5rem;
     font-size: smaller;
+    margin: 0rem;
 }
 
 .job_info {
