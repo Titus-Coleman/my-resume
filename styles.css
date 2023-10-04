@@ -134,7 +134,7 @@ article {
 /*-----------------EDUCATION--------------------*/
 .degree {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     padding: 0.5rem;
     
 }
@@ -149,7 +149,8 @@ article {
 
 /*-----------------REFERENCES--------------------*/
 .my_references {
-    padding: 0.5rem
+    line-height: 0rem;
+    padding-bottom: 5rem;
 }
 .reference {
     display: grid;
