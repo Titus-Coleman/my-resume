@@ -86,8 +86,9 @@ article {
 }
 /*-----------------CERTIFICATIONS--------------------*/
 .cert_group {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* flex-direction: column; */
     /* gap: 2rem; */
     /* width: 100%;
     padding: 0.5rem; */
@@ -109,14 +110,14 @@ article {
 }
 /*-----------------EXPERIENCE--------------------*/
 .job_details {
-    padding: 0.5rem;
+    padding: 0.1rem;
     font-size: smaller;
     margin: 0rem;
 }
 
 .job_info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
 }
 
@@ -125,6 +126,7 @@ article {
 }
 .company {
     color: #DE9151;
+    justify-self: end;
 }
 
 .job_title {
@@ -185,6 +187,26 @@ article {
     }
 
     .cert_group {
+        grid-template-columns: 1fr;
+    }
+    
+    .cert_info {
+        display: flex;
+        align-items: center; 
+        margin: 0rem;
+    }
+
+    .degree > p {
+        justify-self: start;
+    }
+    
+    .my_references {
+        line-height: 0rem;
+        /* padding-bottom: 5rem; */
+    }
+    .reference {
+        display: flex;
         flex-direction: column;
+        /* grid-template-columns: repeat(4, 1fr); */
     }
 }
