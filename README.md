@@ -1,6 +1,6 @@
 # Resume
 
-![Resume](./images/Resume-TitusColeman-CloudSecurityEngineer-.png)
+![Resume Example - visit resume.tituscoleman.dev for most recent version](./images/Resume-TitusColeman-CloudSecurityEngineer-.png)
 
 # Hosting Architecture
 

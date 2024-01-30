@@ -43,7 +43,7 @@ hr {
 .my_info {
     display: grid;
     grid-template-columns: repeat(2, auto);
-    margin: 0rem;
+    margin-top: 1rem;
    
 }
 .personals {
