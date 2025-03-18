@@ -1,6 +1,6 @@
 # Resume
 
-![Resume Example - visit resume.tituscoleman.dev for most recent version](./images/Resume-TitusColeman-CloudEngineer.png)
+![Resume Example - visit resume.tituscoleman.dev for most recent version](./images/Resume-TitusColeman.png)
 
 # Hosting Architecture
 
