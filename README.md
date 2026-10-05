@@ -1,6 +1,8 @@
 # Resume
 
-![Resume Example - visit resume.tituscoleman.dev for most recent version](./images/Resume-TitusColeman.png)
+![Resume page 1 - visit resume.tituscoleman.dev for most recent version](./images/Resume-TitusColeman-page-1.png)
+
+![Resume page 2](./images/Resume-TitusColeman-page-2.png)
 
 # Hosting Architecture
 
