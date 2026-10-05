@@ -1,3 +1,13 @@
+/*-----------------PALETTE & TYPE TOKENS--------------------*/
+:root {
+  --ink: #0f172a;
+  --accent: #0f766e;
+  --accent-soft: #99f6e4;
+  --body: #334155;
+  --muted: #64748b;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -12,10 +22,15 @@ html, body {
 }
 
 body {
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--body);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   max-width: 800px;
   margin: auto;
+  padding: 0 1rem;
 }
 
 img, picture, video, canvas, svg {
@@ -29,7 +44,16 @@ input, button, textarea, select {
 
 p, h3, h4, h5, h6 {
   overflow-wrap: break-word;
-  font-size: small;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  border-bottom-color: var(--accent);
 }
 
 #root, #__next {
@@ -37,90 +61,130 @@ p, h3, h4, h5, h6 {
 }
 
 hr {
-    color: #89BD9E;
+  height: 1px;
+  border: 0;
+  background: var(--accent-soft);
+  margin-top: 0.15rem;
 }
 
+/*-----------------HEADER--------------------*/
 .my_info {
     display: grid;
     grid-template-columns: repeat(2, auto);
-    margin-top: 1rem;
-   
+    margin-top: 1.5rem;
 }
 .personals {
     margin: 0.5rem;
 }
 
 .name {
-    color: #721B92;
-    text-shadow: 0.3px 0.3px 0.5px black;
+    color: var(--ink);
+    font-size: 1.9rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
 }
+
+.contact_info {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-top: 0.35rem;
+}
+
 .intro_detail {
     margin: 0.5rem 1rem 1rem 1rem;
 }
 
 .intro {
-    display: flex;
-    text-align: center;
-    margin-top: 1rem;
+    text-align: left;
+    margin-top: 0.5rem;
+    font-size: 0.84rem;
+    line-height: 1.6;
 }
 .socials {
-    padding-top: 1rem;
+    padding-top: 0.9rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    font-size: smaller;
+    grid-template-columns: repeat(2, auto);
+    justify-content: start;
+    gap: 1.25rem;
+    font-size: 0.8rem;
 }
 
 .social_link{
     display: grid;
     grid-template-columns: repeat(2, auto);
-
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--accent);
 }
 
 article {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1.35rem;
+    margin-bottom: 1.35rem;
 }
+
+.article_title {
+    color: var(--ink);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+}
+
 /*-----------------SKILLS--------------------*/
 .skill_group {
-    margin: 0.5rem;
+    margin: 0.6rem 0.5rem;
+    display: grid;
+    gap: 0.3rem;
 }
 
 .skill_subgroup {
     display: flex;
     gap: 0.5rem;
-    
+    font-size: 0.82rem;
 }
+
+.skill_subgroup > h4 {
+    color: var(--ink);
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
 /*-----------------CERTIFICATIONS--------------------*/
 .cert_group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: 0.5rem;
+    margin: 0.6rem 0.5rem;
+    row-gap: 0.15rem;
 }
 
 .cert {
     display: inline-flex;
-    margin: 0rem 0rem 0.1rem 0.5rem;
+    margin: 0rem 0rem 0.1rem 0rem;
 }
 
 .cert_info {
     display: inline-flex;
-    align-items: center; 
+    align-items: baseline;
     gap: 0.5rem;
+    font-size: 0.82rem;
 }
 
 .cert_info > a {
-    font-size: small;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
-/*-----------------EXPERIENCE--------------------*/
+
+/*-----------------EXPERIENCE & PROJECTS--------------------*/
 
 .job {
-    margin: 0.5rem;
+    margin: 0.6rem 0.5rem;
 }
 
 .job_details {
     padding: 0.1rem;
-    font-size: 12px;
     margin: 0rem;
 }
 
@@ -129,41 +193,128 @@ article {
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
     padding: 0rem;
+    align-items: baseline;
+}
+
+.dates, .location {
+    color: var(--muted);
+    font-size: 0.78rem;
 }
 
 .dates {
     justify-self: end;
 }
 .company {
-    color: #DE9151;
+    color: var(--accent);
     justify-self: end;
+    font-size: 0.82rem;
+    font-weight: 500;
 }
 
 .job_title {
-    font-size: medium;
+    color: var(--ink);
+    font-size: 0.95rem;
+    font-weight: 650;
+}
+
+/* Project source link — bottom-right, mirroring job dates */
+.job_info > a {
+    grid-column: 2;
+    justify-self: end;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Multiple source links on one line (e.g. Linux + Windows modules) */
+.job_info > .source_links {
+    grid-column: 2;
+    justify-self: end;
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+}
+
+.source_label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+}
+
+/* Public build: label replacing the source link */
+.job_info > .internal_note {
+    grid-column: 2;
+    justify-self: end;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.job_duties {
+    margin-top: 0.3rem;
+    padding-left: 1.05rem;
+    font-size: 0.82rem;
+}
+
+.job_duties > li {
+    margin-bottom: 0.22rem;
+}
+
+.job_duties > li::marker {
+    color: var(--accent);
+}
+
+/* Inline links inside bullets */
+.job_duties a {
+    font-weight: 500;
+    border-bottom-color: var(--accent-soft);
+}
+
+.job_duties a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* Footnote below work experience */
+.history_note {
+    margin: 0.35rem 0.5rem 0 0.5rem;
+    font-size: 0.76rem;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.history_note a {
+    font-style: normal;
+    border-bottom-color: var(--accent-soft);
 }
 
 /*-----------------EDUCATION--------------------*/
+article[name="education"] {
+    padding-bottom: 2.5rem;
+}
+
 .degree {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 0.5rem;
-    margin: 0.5rem;
-    
+    padding: 0rem;
+    margin: 0.6rem 0.5rem;
+    font-size: 0.82rem;
 }
 
-.degree > h4 { 
-    font-weight: normal;
+.degree > h4 {
+    color: var(--ink);
+    font-size: 0.82rem;
+    font-weight: 600;
 }
 
 .degree > p {
     justify-self: end;
+    color: var(--muted);
 }
 
 /*-----------------REFERENCES--------------------*/
 .my_references {
-    line-height: 0rem;
-    padding-bottom: 5rem;
+    padding-bottom: 2rem;
     margin: 1rem;
 }
 .reference {
@@ -171,8 +322,100 @@ article {
     grid-template-columns: repeat(4, 1fr);
 }
 
+/*-----------------PRINT / PDF EXPORT--------------------*/
+@media print {
+    @page {
+        size: letter;
+        margin: 0.5in 0.55in;
+    }
+
+    /* Cancels screen height:100%, which adds a blank trailing page */
+    html, body {
+        height: auto;
+    }
+
+    /* Root size is the only scaling lever — all sizes are rem. 16px = 3 pages */
+    html {
+        font-size: 15px;
+    }
+
+    body {
+        max-width: none;
+        padding: 0;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .intro {
+        margin-top: 0.25rem;
+    }
+
+    .socials {
+        padding-top: 0.5rem;
+    }
+
+    .job {
+        margin: 0.4rem 0.5rem;
+    }
+
+    .job_duties > li {
+        margin-bottom: 0.1rem;
+    }
+
+    .skill_group, .cert_group, .degree {
+        margin-top: 0.4rem;
+        margin-bottom: 0.4rem;
+    }
+
+    /* Preserve accent colors in the PDF */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Keep entries whole across page breaks */
+    .job_details, .job, .cert, .skill_subgroup, .degree {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .job_info {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    /* Chain title -> hr -> first entry so headings never end a page */
+    .article_title,
+    .article_title + hr {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .job_duties > li {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    article {
+        margin-top: 0.9rem;
+        margin-bottom: 0.9rem;
+    }
+
+    article[name="education"] {
+        padding-bottom: 1.25rem;
+    }
+
+    .my_info {
+        margin-top: 0;
+    }
+
+    a {
+        border-bottom-color: transparent;
+    }
+}
+
 @media screen and (max-width: 650px) {
-    .my_info { 
+    .my_info {
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -187,38 +430,43 @@ article {
     }
 
     .intro {
-        display: flex;
-        text-align: center;
+        text-align: left;
         margin-top: 1rem;
     }
 
     .socials {
-        display: grid;
         grid-template-columns: repeat(2, auto);
-        grid-template-rows: repeat(2, auto);
+        justify-content: center;
     }
 
     .cert_group {
         grid-template-columns: 1fr;
     }
-    
+
     .cert_info {
         display: flex;
-        align-items: center; 
+        align-items: center;
         margin: 0rem;
+    }
+
+    .skill_subgroup {
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+
+    .job_info {
+        grid-template-columns: 1fr;
+    }
+
+    .dates, .company {
+        justify-self: start;
+    }
+
+    .degree {
+        grid-template-columns: 1fr;
     }
 
     .degree > p {
         justify-self: start;
-    }
-    
-    .my_references {
-        line-height: 0rem;
-        /* padding-bottom: 5rem; */
-    }
-    .reference {
-        display: flex;
-        flex-direction: column;
-        /* grid-template-columns: repeat(4, 1fr); */
     }
 }
