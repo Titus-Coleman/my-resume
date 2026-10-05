@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <title>Titus Coleman - Software Engineer</title>
+    <title>Titus Coleman - Cloud Native Engineer</title>
     <meta
       name="description"
-      content="Full-stack engineer who takes web applications from schema and API design through containerized deployment: Go services over relational data, TypeScript/React frontends, and the Kubernetes, Helm, and Terraform infrastructure they run on."
+      content="Cloud-native engineer who takes solutions from data model and API design through containerized deployment: Kubernetes and Helm, Terraform-defined AWS infrastructure, OIDC/SAML auth, and Grafana-based observability."
     />
   </head>
   <body>
@@ -24,13 +24,8 @@
         </div>
         <div class="intro_detail">
           <p class="intro">
-            Full-stack engineer who takes web applications from schema and API
-            design through containerized deployment: Go services over relational
-            data, TypeScript/React frontends, OAuth/OIDC and SAML auth, and
-            production observability. At Vast I built Grove, which manages
-            self-hosted macOS CI runners, and a self-service Active Directory
-            password portal, alongside reusable Terraform modules other
-            engineers consume.
+            Cloud-native engineer developing solutions from concept to data
+            model and API design through to production.
           </p>
           <div name="socials" class="socials">
             <div class="social_link">
@@ -96,14 +91,15 @@
           </div>
           <div class="skill_subgroup">
             <h4>Libraries / Frameworks:</h4>
-            <p>React, Vite, Node.js, REST APIs, Tailwind CSS</p>
+            <p>React, Vite, Node.js, CSS</p>
           </div>
           <div class="skill_subgroup">
             <h4>Infrastructure & Tools:</h4>
             <p>
-              Docker, Kubernetes, Helm, Terraform, Packer, AWS, GCP, PostgreSQL
-              / MySQL, GitHub Actions, Grafana, Artifactory, SAML &amp; OIDC,
-              Git, Linux, CMMC compliance baselines
+              Docker, Kubernetes, Helm, Terraform, Packer, AWS, GCP, Google
+              Workspace, PostgreSQL / MySQL, GitHub Actions, Grafana,
+              Artifactory, SAML &amp; OIDC, Git, Linux, CMMC compliance
+              baselines
             </p>
           </div>
         </div>
@@ -116,7 +112,37 @@
         <div class="job_details">
           <div class="job">
             <div class="job_info">
-              <h4 class="job_title">Grove — macOS CI Runner Platform</h4>
+              <h4 class="job_title">
+                AWS Research and Engineering Studio: Engineering VDI
+              </h4>
+              <h5 class="company">AWS RES · Terraform · EC2 · EFS</h5>
+              <span class="internal_note">Vast Internal Solution</span>
+            </div>
+            <ul class="job_duties">
+              <li>
+                Deployed AWS Research and Engineering Studio to give engineers
+                on-demand virtual desktops sized for Thermal Desktop and Matlab.
+              </li>
+              <li>
+                Automated the VDI image builds so desktops provision from a
+                repeatable, versioned image instead of manual per-machine setup.
+              </li>
+              <li>
+                Mapped per-user EFS volumes into each session so files follow
+                engineers onto any desktop.
+              </li>
+              <li>
+                Managed networking, IAM, storage, and supporting resources as
+                Terraform.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job_details">
+          <div class="job">
+            <div class="job_info">
+              <h4 class="job_title">Grove: macOS CI Runner Platform</h4>
               <h5 class="company">
                 Go · TypeScript · Aurora PostgreSQL · K8s · Helm
               </h5>
@@ -124,33 +150,24 @@
             </div>
             <ul class="job_duties">
               <li>
-                Full-stack web application that manages self-hosted macOS GitHub
-                Actions runners: listens for jobs from the company's self-hosted
-                GitHub, provisions an ephemeral VM per job on each macOS host,
-                records time-series metrics for every VM, and drives Packer
-                image builds from a GUI — collapsing the operational complexity
-                of macOS runners into a single tool.
+                Full-stack platform for self-hosted macOS GitHub Actions
+                runners: provisions an ephemeral VM per job on each macOS host,
+                records per-VM time-series metrics, and drives Packer image
+                builds from a GUI.
               </li>
               <li>
-                Designed the Aurora PostgreSQL data model behind it — macOS
-                hosts, queued and running jobs, ephemeral VM lifecycle, and the
-                time-series metrics each VM emits — and the REST API contract
-                the frontend consumes.
+                Designed the Aurora PostgreSQL data model (hosts, jobs, VM
+                lifecycle, metrics) and the REST API contract the frontend
+                consumes.
               </li>
               <li>
-                Built as two independently deployed containers — a Go
-                backend-for-frontend serving a Vite/TypeScript frontend, and a
-                separate runner service that talks to the GitHub App —
-                decoupling runner provisioning from request handling.
+                Two independently deployed containers: a Go backend-for-frontend
+                serving a Vite/TypeScript frontend, and a runner service talking
+                to the GitHub App.
               </li>
               <li>
-                Google Workspace OIDC for authentication, Artifactory as a
-                dependency proxy, and Helm-chart deployment on Kubernetes.
-              </li>
-              <li>
-                Sole engineer on design and implementation; supersedes
-                ephemeral-macos-runner, an earlier reference implementation documenting the manual
-                deployment requirements Grove automates.
+                Google Workspace OIDC, Artifactory dependency proxy, Helm
+                deployment on Kubernetes.
               </li>
             </ul>
           </div>
@@ -159,42 +176,23 @@
         <div class="job_details">
           <div class="job">
             <div class="job_info">
-              <h4 class="job_title">AD Password Portal</h4>
-              <h5 class="company">.NET · LDAPS · Vite · SAML · Docker</h5>
+              <h4 class="job_title">Custom Networking EKS cluster migration</h4>
+              <h5 class="company">AWS · Karpenter · ArgoCD · Kubernetes</h5>
               <span class="internal_note">Vast Internal Solution</span>
             </div>
             <ul class="job_duties">
               <li>
-                Employee-facing self-service password portal integrating with
-                Active Directory over LDAPS via .NET libraries, removing
-                help-desk involvement from routine password resets.
+                Migrating clusters to utilize CGNAT cidr range to aliviate IP
+                exhaustion
               </li>
               <li>
-                Authenticated with SAML against Google Workspace and deployed
-                behind a reverse proxy handling rate limiting; logs to
-                stdout/stderr for container-native collection.
+                Coordinating with various stakeholders to minimize downtime to
+                scheduled maintenence periods and ensure continued commutication
+                with services.
               </li>
               <li>
-                Built the portal and AD integration; one teammate assisted with
-                the SAML integration. Shipped as a Docker image.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="job_details">
-          <div class="job">
-            <div class="job_info">
-              <h4 class="job_title">VS Code Extension Inventory</h4>
-              <h5 class="company">Go · Jamf Pro API</h5>
-              <span class="internal_note">Vast Internal Solution</span>
-            </div>
-            <ul class="job_duties">
-              <li>
-                Go tool that fans out concurrent calls to the Jamf Pro API and
-                its extension attributes to inventory every VS Code extension
-                installed across the company's macOS fleet, turning per-device
-                data into a single CSV file.
+                All changes commited with Terraform via Spacelift and manifests
+                deployed via ArgoCD.
               </li>
             </ul>
           </div>
@@ -211,8 +209,8 @@
               <li>
                 Linux and Windows EC2 modules consumable by any engineer,
                 automating domain join via AWS Runbooks, Grafana Alloy logging
-                and metrics, and security-group ingress/egress — versioned
-                through CI and published to Artifactory.
+                and metrics, and security-group rules. Versioned through CI and
+                published to Artifactory.
               </li>
             </ul>
           </div>
@@ -233,18 +231,15 @@
             </div>
             <ul class="job_duties">
               <li>
-                Design and ship internal web applications and automation that
-                replace manual operational workflows — Go and TypeScript
-                services, the data models behind them, and the CI/CD that builds
-                and deploys them — serving a mixed Linux, Windows, macOS, and
-                iOS/iPadOS fleet managed with JumpCloud, Jamf Pro, Active
-                Directory, and Google MDM.
+                Serving a mixed Linux, Windows, macOS, and iOS/iPadOS fleet
+                managed with Puppet, JumpCloud, Jamf Pro, Active Directory, and
+                Google MDM.
               </li>
               <li>
                 Architect and deploy FIPS-compliant infrastructure-as-code in
-                AWS GovCloud using Terraform, covering IAM, networking, storage,
-                monitoring, and disaster recovery — version-controlled and
-                reviewed like application code.
+                AWS GovCloud using Terraform, secure IAM, networking, storage,
+                monitoring, and disaster recovery. Strictly Version-controlled
+                and reviewed like application code.
               </li>
               <li>
                 Instrument systems with Grafana-based logging and metrics and
@@ -310,10 +305,6 @@
                 Provided Tier 3 support, troubleshooting hosting, domain, email,
                 database, and control panel issues at the system level.
               </li>
-              <li>
-                Assisted with capacity planning, infrastructure upgrades, and
-                testing of new hosting platforms and technologies.
-              </li>
             </ul>
           </div>
         </div>
@@ -332,16 +323,16 @@
         <div class="cert_group">
           <div class="cert">
             <div class="cert_info">
-              <p>HashiCorp Certified: Terraform Associate</p>
+              <p>CompTIA Security+</p>
               <a
                 class="cert_verification"
-                href="https://www.credly.com/badges/69eacfa8-adfa-4ba3-a3e1-4772d29f1b1b/public_url"
+                href="https://www.credly.com/badges/39769924-300d-49f7-8aea-498750a01c90/public_url"
                 target="_blank"
                 >Status</a
               >
             </div>
           </div>
-          <div class="cert">
+          <!-- <div class="cert">
             <div class="cert_info">
               <p>AWS Solutions Architect - Associate</p>
               <a
@@ -351,7 +342,7 @@
                 >Status</a
               >
             </div>
-          </div>
+          </div> -->
           <div class="cert">
             <div class="cert_info">
               <p>AWS Certified Security - Specialty</p>
@@ -365,7 +356,7 @@
           </div>
           <div class="cert">
             <div class="cert_info">
-              <p>All badges</p>
+              <p>More</p>
               <!-- TODO: confirm Credly profile slug -->
               <a
                 class="cert_verification"
